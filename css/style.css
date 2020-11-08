@@ -1,135 +1,185 @@
-/* Сброс стилей */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
-  border: none;
+  border: 0;
   padding: 0;
 }
-html,
-body {
+html, body {
   height: 100%;
-}
- 
-.wrapper {}
 
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 10px;
+
+}
+.wrapper {
+
+}
 .header {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
   width: 100%;
 }
 .header::before {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 3;
   width: 100%;
   height: 100%;
-  background-color: red;
-  content: '';
-}
+  background-color: #5e5373;
+  content: "";
+  z-index: 5;
 
-.container {
-  margin: 0 auto;
-  max-width: 1180px;
-  padding: 0 10px;
 }
-
 .header__body {
   display: flex;
   position: relative;
   align-items: center;
   justify-content: space-between;
-  z-index: 6;
   height: 80px;
-}
 
-.header__logo img {
-  display: block;
-  max-width: 100%;
-  height: 60px;
 }
 .header__logo {
-  position: relative;
+  display: block;
   flex: 0 0 60px;
-  z-index: 3;
   border-radius: 50%;
   overflow: hidden;
+  z-index: 5;
 }
 
-.header__menu a {
-  text-transform: uppercase;
-  color: #ffffff;
+.header__menu {
+  
+  padding: 10px 10px 20px 10px;
+}
+
+.header__burger {
+  display: none;
 }
 
 .header__list {
   display: flex;
+  margin-left: 50px;
+  list-style: none;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  z-index: 10;
+  position: relative;
 }
 .header__list li {
   margin-left: 20px;
-  list-style: none;
-
 }
 .header__link {
-  text-decoration: none;
 }
-
 .content {
   padding-top: 100px;
 }
-
+.container {
+}
 .content__text {
   line-height: 20px;
-  font-size: 16px;
+  font-size: 18px;
 }
-.content__text p{
+.content__text p {
   margin-bottom: 20px;
 }
-.header__burger {
-  display: none;
-}
-.header__burger span {
-   position: absolute;
-   top: 9px;
-   left: 0;
-   width: 100%;
-   height: 2px;
-   background-color: #ffffff;
-}
-.header__burger:before,
-.header__burger:after {
-  position: absolute;
-  left: 0;
-  z-index: 3;
-  width: 100%;
-  height: 2px;
-  background-color: #ffffff;
-  content: '';
-}
-.header__burger:before {
-  top: 0;
-}
-.header__burger:after {
-  bottom: 0;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  body.lock {
+    overflow: hidden;
+  }
+  .header__body {
+    height: 50px;
+  }
+  .header__logo {
+    flex: 0 0 40px;
+  }
   .header__burger {
     display: block;
     position: relative;
-    z-index: 2;
     width: 30px;
     height: 20px;
+    z-index: 5;
+  }
+  .header__burger::before,
+  .header__burger::after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    content: '';
+  }
+  .header__burger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    top: 9px;
+    transition: all 0.3s ease;
+  }
+  .header__burger::before {
+    top: 0;
+    transition: all 0.3s ease;
+  }
+  .header__burger::after {
+    bottom: 0;
+    transition: all 0.3s ease;
+  }
+  .header__list {
+    display: block;
+    position: absolute;
+    left: -200px;
+    margin-left: 0;
+    transform: translateX(-200px);
+    transition: all 0.4s ease-in;
+  }
+  .header__list li{
+    margin: 0 0 20px 0;
   }
   .header__menu {
     position: fixed;
-    top: 0;
+    top: -100%;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #5a87da;
-
+    background-color: rgb(27, 131, 108);
+    padding: 70px 10px 20px 10px;
+    transition: all 0.3s ease-in;
+    overflow: auto;
+    
   }
 }
+.header__burger.active span{
+  transform: scale(0);
+  
+}
+.header__burger.active::before {
+  transform: rotate(45deg);
+  top: 9px;
+}
+.header__burger.active::after {
+  transform: rotate(-45deg);
+  bottom: 9px;
+}
+.header__menu.active {
+  transform:  translateY(100%);
+  }
+  .header__list.active {
+    transform: translateX(220px)
+  }
+  .content {
+    padding-top: 70px;
+  }
+  .header__link {
+    font-size: 30px;
+  }
